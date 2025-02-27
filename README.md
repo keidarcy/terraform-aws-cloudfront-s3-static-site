@@ -32,7 +32,7 @@ variable "acm_certificate_arn" {
 }
 
 module "static_site" {
-  source = "../"
+  source = "keidarcy/cloudfront-s3-static-site/aws"
 
   name                = var.name
   acm_certificate_arn = var.acm_certificate_arn
