@@ -58,6 +58,7 @@ resource "aws_cloudfront_distribution" "static_site" {
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "index.html"
+  comment             = "Static site for ${var.name}"
   aliases             = [var.name]
   price_class         = "PriceClass_100"
   tags                = var.tags
@@ -104,6 +105,8 @@ resource "aws_cloudfront_distribution" "static_site" {
       restriction_type = "none"
     }
   }
+
+
 
   viewer_certificate {
     acm_certificate_arn      = var.acm_certificate_arn
