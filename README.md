@@ -53,11 +53,12 @@ module "static_site" {
 
 ## Inputs
 
-| Name | Description | Type | Required |
-|------|-------------|------|----------|
-| name | Name for the static site. This will be used as the S3 bucket name and domain name. Must be a valid S3 bucket name. | `string` | yes |
-| acm_certificate_arn | ARN of the ACM certificate to use for the CloudFront distribution. Must be in us-east-1 region. | `string` | yes |
-| tags | Tags to apply to all resources | `map(string)` | no |
+| Name | Description | Type | Required | Default |
+|------|-------------|------|----------|---------|
+| name | Name for the static site. This will be used as the S3 bucket name and domain name. Must be a valid S3 bucket name. | `string` | yes | |
+| acm_certificate_arn | ARN of the ACM certificate to use for the CloudFront distribution. Must be in us-east-1 region. | `string` | yes | |
+| tags | Tags to apply to all resources | `map(string)` | no | `{}` |
+| enable_bucket_versioning | Enable versioning for the S3 bucket | `bool` | no | `true` |
 
 ## Outputs
 
@@ -73,7 +74,7 @@ module "static_site" {
 1. S3 bucket is completely private
    - Public access is blocked
    - Bucket policy only allows access from CloudFront
-   - Versioning is enabled for protection against accidental deletions
+   - Versioning is enabled by default (can be disabled via `enable_bucket_versioning` variable)
 
 2. CloudFront security features
    - HTTPS only (redirects HTTP to HTTPS)
